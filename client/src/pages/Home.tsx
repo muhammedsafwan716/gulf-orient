@@ -38,12 +38,12 @@ import {
   Zap,
 } from "lucide-react";
 
-const asset = (path: string) => `/manus-storage/${path}`;
+const asset = (path: string) => `/images/${path}`;
 
 const siteConfig = {
   name: "GULF ORIENT Electromechanical Contracting LLC",
   shortName: "GULF ORIENT",
-  tagline: "Electromechanical & interior works · UAE",
+  tagline: "Electromechanical Contracting · UAE",
   whatsappNumber: "",
   contact: {
     address: "[COMPANY ADDRESS]",
@@ -54,11 +54,12 @@ const siteConfig = {
 };
 
 const imagePaths = {
-  hero: asset("construction-site_e7a1e136.jpg"),
-  electrical: asset("electrical-installation_95aa74b6.jpg"),
-  ceiling: asset("ceiling-installation_ed8d272b.jpg"),
-  office: asset("office-interior_5b430bce.jpg"),
-  detail: asset("electrical-detail_0b82134d.jpg"),
+  hero: asset("construction-site.jpg"),
+  electrical: asset("electrical-installation.jpg"),
+  ceiling: asset("ceiling-installation.jpg"),
+  office: asset("office-interior.jpg"),
+  detail: asset("electrical-detail.jpg"),
+  finishing: asset("residential-finishing.jpg")
 };
 
 type ProjectCategory = "All" | "Electrical" | "Electromechanical" | "Interior" | "Fit-Out" | "Maintenance";
@@ -110,7 +111,7 @@ const projects: Project[] = [
   { title: "Commercial Ceiling Works", location: "Abu Dhabi", category: "Interior", description: "Demo / placeholder project content — replace with verified project information and photographs.", image: imagePaths.ceiling, accent: "03 / Interior" },
   { title: "Site Coordination & Services", location: "Sharjah", category: "Electromechanical", description: "Demo / placeholder project content — replace with verified project information and photographs.", image: imagePaths.hero, accent: "04 / MEP" },
   { title: "Maintenance Support Scope", location: "UAE", category: "Maintenance", description: "Demo / placeholder project content — replace with verified project information and photographs.", image: imagePaths.detail, accent: "05 / Maintenance" },
-  { title: "Residential Finishing Package", location: "Dubai", category: "Interior", description: "Demo / placeholder project content — replace with verified project information and photographs.", image: imagePaths.detail, accent: "06 / Finishing" },
+  { title: "Residential Finishing Package", location: "Dubai", category: "Interior", description: "Demo / placeholder project content — replace with verified project information and photographs.", image: imagePaths.finishing, accent: "06 / Finishing" },
 ];
 
 const processSteps = [
@@ -132,8 +133,8 @@ const navItems = [
 function BrandMark({ inverted = false }: { inverted?: boolean }) {
   return (
     <a href="#top" className={`brand-lockup ${inverted ? "brand-lockup--inverted" : ""}`} aria-label="GULF ORIENT home">
-      <span className="brand-mark" aria-hidden="true"><span>GO</span></span>
-      <span className="brand-name"><strong>GULF</strong><span>ORIENT</span><small>CONTRACTING LLC</small></span>
+      <img src="public/images/gulf-orient-logo.png" alt="GULF ORIENT Contracting LLC" className="brand-logo"/>
+      <span className="brand-name"><span>GULF ORIENT</span><small>ELECTROMECHANICAL CONTRACTING LLC</small></span>
     </a>
   );
 }
@@ -224,10 +225,10 @@ export default function Home() {
               <p>One coordinated partner for the details that make a space work.</p>
             </div>
           </div>
-          <div className="hero-bottom container">
+          {/* <div className="hero-bottom container">
             <span>UAE-based contracting partner</span>
             <span className="hero-scroll"><span /> Scroll to explore</span>
-          </div>
+          </div> */}
         </section>
 
         <section className="about-section section-pad" id="about">
@@ -235,7 +236,7 @@ export default function Home() {
             <div className="about-visual reveal-frame">
               <img src={imagePaths.electrical} alt="Electrical installation work in progress" />
               <div className="image-caption"><span>GULF ORIENT</span><span>01 / FIELD DETAIL</span></div>
-              <div className="about-stamp"><span>GO</span><small>DETAILS<br />MATTER</small></div>
+              <div className="about-stamp"> <img src="/images/gulf-orient-logo.png" alt="GULF ORIENT Contracting LLC" className="brand-logo-badge"/><small>DETAILS MATTER</small></div>
             </div>
             <div className="about-copy">
               <SectionIntro eyebrow="About GULF ORIENT" title="Engineering the details. Delivering the complete result." description="GULF ORIENT provides integrated contracting and finishing services, helping clients manage multiple project requirements through coordinated professional execution." />
@@ -298,7 +299,7 @@ export default function Home() {
         <section className="projects-section section-pad section-tint" id="projects">
           <div className="container">
             <div className="section-heading-row">
-              <SectionIntro eyebrow="Project direction" title="A portfolio ready for the real work." description="Project photography and verified information will be added here as they become available. The examples below are clearly marked demo placeholders." />
+              <SectionIntro eyebrow="Project direction" title="A portfolio ready for the real work." description="Project photography and verified information will be added here as they become available." />
               <span className="section-index">04 <span>/ portfolio</span></span>
             </div>
             <div className="project-toolbar" role="group" aria-label="Filter projects by category">
@@ -310,7 +311,8 @@ export default function Home() {
                 <div className="project-card-body"><div><span className="project-location"><MapPin size={13} /> {project.location}</span><h3>{project.title}</h3></div><ChevronRight size={17} /></div>
               </article>)}
             </div>
-            <div className="placeholder-note"><span className="placeholder-dot" /> Demo content is temporary. Replace project entries in <code>Home.tsx</code> when verified photographs and information are supplied.</div>
+            <div className="placeholder-note"><span className="placeholder-dot" /> Demo content.</div>
+            {/* <div className="placeholder-note"><span className="placeholder-dot" /> Demo content is temporary. Replace project entries in <code>Home.tsx</code> when verified photographs and information are supplied.</div> */}
           </div>
         </section>
 
@@ -340,8 +342,10 @@ export default function Home() {
 
         <section className="contact-section section-pad" id="contact">
           <div className="container contact-layout">
-            <div className="contact-intro"><SectionIntro eyebrow="Contact GULF ORIENT" title="Let's discuss your project." description="Share a few details about your scope, location or requirements and start a direct conversation with the GULF ORIENT team." /><div className="contact-details"><div className="contact-detail"><MapPin size={19} /><div><span>Location</span><strong>{siteConfig.contact.address}</strong></div></div><div className="contact-detail"><Phone size={19} /><div><span>Phone</span><strong>{siteConfig.contact.phone}</strong></div></div><div className="contact-detail"><Mail size={19} /><div><span>Email</span><strong>{siteConfig.contact.email}</strong></div></div><div className="contact-detail"><HardHat size={19} /><div><span>Business hours</span><strong>{siteConfig.contact.hours}</strong></div></div></div><a className="whatsapp-link" href={whatsappHref} aria-label="WhatsApp enquiry option"><span className="whatsapp-icon">◌</span><span><strong>WhatsApp enquiry</strong><small>{siteConfig.whatsappNumber ? "Start a quick conversation" : "Number to be configured"}</small></span><ArrowUpRight size={17} /></a></div>
-            <div className="contact-quick-panel"><span className="eyebrow eyebrow--light">A direct next step</span><h3>Prefer a quick conversation?</h3><p>Use WhatsApp to share your project requirements, ask a question or request a quotation.</p><a className="button button--primary" href={whatsappHref}>Start on WhatsApp <ArrowUpRight size={16} /></a><span className="contact-quick-note">The verified company WhatsApp number can be added in one place inside <code>siteConfig</code>.</span></div>
+            <div className="contact-intro"><SectionIntro eyebrow="Contact GULF ORIENT" title="Let's discuss your project." description="Share a few details about your scope, location or requirements and start a direct conversation with the GULF ORIENT team." /><div className="contact-details"><div className="contact-detail"><MapPin size={19} /><div><span>Location</span><strong>{siteConfig.contact.address}</strong></div></div><div className="contact-detail"><Phone size={19} /><div><span>Phone</span><strong>{siteConfig.contact.phone}</strong></div></div><div className="contact-detail"><Mail size={19} /><div><span>Email</span><strong>{siteConfig.contact.email}</strong></div></div><div className="contact-detail"><HardHat size={19} /><div><span>Business hours</span><strong>{siteConfig.contact.hours}</strong></div></div></div><a className="whatsapp-link" href={whatsappHref} aria-label="WhatsApp enquiry option"><span className="whatsapp-icon">◌</span><span><strong>WhatsApp enquiry</strong><small>{siteConfig.whatsappNumber ? "Start a quick conversation" : "Start a quick conversation"}</small></span><ArrowUpRight size={17} /></a></div>
+            <div className="contact-quick-panel"><span className="eyebrow eyebrow--light">A direct next step</span><h3>Prefer a quick conversation?</h3><p>Use WhatsApp to share your project requirements, ask a question or request a quotation.</p><a className="button button--primary" href={whatsappHref}>Start on WhatsApp <ArrowUpRight size={16} /></a>
+            {/* <span className="contact-quick-note">The verified company WhatsApp number can be added in one place inside <code>siteConfig</code>.</span> */}
+            </div>
           </div>
         </section>
 
@@ -349,7 +353,7 @@ export default function Home() {
 
       <footer className="site-footer"><div className="container footer-main"><div className="footer-brand"><BrandMark inverted /><p>Integrated electrical, electromechanical, fit-out and interior contracting solutions for the UAE.</p><a className="footer-mail" href="#contact"><Mail size={15} />{siteConfig.contact.email}</a></div><div className="footer-column"><span className="footer-label">Explore</span>{navItems.slice(0, 4).map((item) => <a key={item.href} href={item.href}>{item.label}</a>)}</div><div className="footer-column"><span className="footer-label">Services</span>{services.slice(0, 5).map((service) => <a key={service.title} href="#services">{service.title}</a>)}</div><div className="footer-column footer-contact"><span className="footer-label">Contact</span><span>{siteConfig.contact.address}</span><span>{siteConfig.contact.phone}</span><span>{siteConfig.contact.hours}</span><a className="footer-whatsapp" href={whatsappHref}>WhatsApp enquiry <ArrowUpRight size={14} /></a></div></div><div className="container footer-bottom"><span>© {new Date().getFullYear()} GULF ORIENT Electromechanical Contracting LLC</span><span>Professional contracting. Clear communication. No shortcuts.</span></div></footer>
 
-      {selectedProject && <div className="project-modal-backdrop" role="presentation" onClick={() => setSelectedProject(null)}><div className="project-modal" role="dialog" aria-modal="true" aria-labelledby="project-modal-title" onClick={(event) => event.stopPropagation()}><button className="modal-close" type="button" aria-label="Close project details" onClick={() => setSelectedProject(null)}><X size={20} /></button><div className="modal-image"><img src={selectedProject.image} alt={`${selectedProject.title} demo placeholder`} /></div><div className="modal-content"><span className="project-category">{selectedProject.accent}</span><span className="project-location"><MapPin size={13} /> {selectedProject.location}</span><h2 id="project-modal-title">{selectedProject.title}</h2><p>{selectedProject.description}</p><div className="modal-note"><Construction size={16} /> Replace this demo entry with verified project details before launch.</div></div></div></div>}
+      {selectedProject && <div className="project-modal-backdrop" role="presentation" onClick={() => setSelectedProject(null)}><div className="project-modal" role="dialog" aria-modal="true" aria-labelledby="project-modal-title" onClick={(event) => event.stopPropagation()}><button className="modal-close" type="button" aria-label="Close project details" onClick={() => setSelectedProject(null)}><X size={20} /></button><div className="modal-image"><img src={selectedProject.image} alt={`${selectedProject.title} demo placeholder`} /></div><div className="modal-content"><span className="project-category">{selectedProject.accent}</span><span className="project-location"><MapPin size={13} /> {selectedProject.location}</span><h2 id="project-modal-title">{selectedProject.title}</h2><p>{selectedProject.description}</p><div className="modal-note"><Construction size={16} /> Demo Text.</div></div></div></div>}
     </div>
   );
 }
