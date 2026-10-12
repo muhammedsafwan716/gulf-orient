@@ -133,7 +133,7 @@ const navItems = [
 function BrandMark({ inverted = false }: { inverted?: boolean }) {
   return (
     <a href="#top" className={`brand-lockup ${inverted ? "brand-lockup--inverted" : ""}`} aria-label="GULF ORIENT home">
-      <img src="public/images/gulf-orient-logo.png" alt="GULF ORIENT Contracting LLC" className="brand-logo"/>
+      <img src="/images/gulf-orient-logo.png" alt="GULF ORIENT Contracting LLC" className="brand-logo"/>
       <span className="brand-name"><span>GULF ORIENT</span><small>ELECTROMECHANICAL CONTRACTING LLC</small></span>
     </a>
   );
