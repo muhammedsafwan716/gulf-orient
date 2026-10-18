@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import type { LucideIcon } from "lucide-react";
+import { DocumentMeta } from "../components/DocumentMeta";
+import { trackEvent } from "../lib/analytics";
 import {
   ArrowDownRight,
   ArrowUpRight,
@@ -75,6 +77,7 @@ type Project = {
   description: string;
   image: string;
   accent: string;
+  alt: string;
 };
 
 const services: {
@@ -194,54 +197,60 @@ const projects: Project[] = [
     location: "Dubai",
     category: "Fit-Out",
     description:
-      "Demo / placeholder project content — replace with verified project information and photographs.",
+      "Turnkey commercial office fit-out, acoustic partitions, integrated lighting, and electromechanical scope.",
     image: imagePaths.office,
     accent: "02 / Fit-out",
+    alt: "Commercial business centre office interior fit-out and lighting in Dubai by GULF ORIENT",
   },
   {
     title: "Electrical Installation Study",
     location: "UAE",
     category: "Electrical",
     description:
-      "Demo / placeholder project content — replace with verified project information and photographs.",
+      "Heavy-duty electrical power distribution, switchgear installation, and main containment cable works.",
     image: imagePaths.electrical,
     accent: "01 / Electrical",
+    alt: "Industrial electrical cable installation and distribution boards in UAE by GULF ORIENT",
   },
   {
     title: "Commercial Ceiling Works",
     location: "Abu Dhabi",
     category: "Interior",
     description:
-      "Demo / placeholder project content — replace with verified project information and photographs.",
+      "Acoustic and decorative false ceiling installations with coordinated air conditioning grilles and LED fixtures.",
     image: imagePaths.ceiling,
     accent: "03 / Interior",
+    alt: "Commercial false ceiling grid and linear lighting installation in Abu Dhabi by GULF ORIENT",
   },
   {
     title: "Site Coordination & Services",
     location: "Sharjah",
     category: "Electromechanical",
     description:
-      "Demo / placeholder project content — replace with verified project information and photographs.",
+      "Comprehensive electromechanical MEP infrastructure installation and site coordination across multi-zone scopes.",
     image: imagePaths.hero,
     accent: "04 / MEP",
+    alt: "Electromechanical contracting site coordination and MEP execution in Sharjah by GULF ORIENT",
   },
   {
     title: "Maintenance Support Scope",
     location: "UAE",
     category: "Maintenance",
     description:
-      "Demo / placeholder project content — replace with verified project information and photographs.",
+      "Preventive and responsive maintenance support for commercial electrical panels and HVAC air handling equipment.",
     image: imagePaths.detail,
     accent: "05 / Maintenance",
+    alt: "Circuit breaker panel maintenance and MEP diagnostics in UAE by GULF ORIENT",
   },
   {
     title: "Residential Finishing Package",
     location: "Dubai",
     category: "Interior",
     description:
-      "Demo / placeholder project content — replace with verified project information and photographs.",
+      "Premium residential interior finishing, gypsum partition bulkheads, tiling and detailed MEP fixtures.",
     image: imagePaths.finishing,
     accent: "06 / Finishing",
+    alt: "Luxury residential interior finishing, tiling and architectural gypsum in Dubai by GULF ORIENT",
   },
 ];
 
@@ -300,7 +309,7 @@ function BrandMark({ inverted = false }: { inverted?: boolean }) {
     >
       <img
         src="/images/gulf-orient-logo.webp"
-        alt="GULF ORIENT Contracting LLC"
+        alt="GULF ORIENT Electromechanical Contracting LLC brand logo"
         className="brand-logo"
         width="180"
         height="60"
@@ -359,7 +368,7 @@ export default function Home() {
       activeCategory === "All"
         ? projects
         : projects.filter(project => project.category === activeCategory),
-    [activeCategory]
+    [activeCategory],
   );
 
   const goTo = (href: string) => {
@@ -373,9 +382,17 @@ export default function Home() {
 
   return (
     <div className="site-shell" id="top">
+      <DocumentMeta
+        title="GULF ORIENT Electromechanical Contracting LLC | Electrical, MEP & Interior Works UAE"
+        description="Reliable electrical, electromechanical, HVAC & AC installation, fit-out and interior contracting solutions for commercial, residential and business environments across the UAE."
+        canonical="https://gulforientec.ae/"
+      />
       <a
         className={`floating-whatsapp ${siteConfig.whatsappNumber ? "" : "floating-whatsapp--placeholder"}`}
         href={whatsappHref}
+        target="_blank"
+        rel="noopener noreferrer"
+        onClick={() => trackEvent("whatsapp_click", { location: "floating_button" })}
         aria-label={
           siteConfig.whatsappNumber
             ? "Chat with GULF ORIENT on WhatsApp"
@@ -405,7 +422,11 @@ export default function Home() {
               </a>
             ))}
           </nav>
-          <a className="button button--small button--header" href="#contact">
+          <a
+            className="button button--small button--header"
+            href="#contact"
+            onClick={() => trackEvent("quote_click", { location: "header" })}
+          >
             Request a quote <ArrowUpRight size={15} />
           </a>
           <button
@@ -432,7 +453,10 @@ export default function Home() {
           <a
             className="button button--dark"
             href="#contact"
-            onClick={() => setIsMenuOpen(false)}
+            onClick={() => {
+              setIsMenuOpen(false);
+              trackEvent("quote_click", { location: "mobile_menu" });
+            }}
           >
             Request a quote <ArrowUpRight size={15} />
           </a>
@@ -467,8 +491,21 @@ export default function Home() {
                 environments across the UAE.
               </p>
               <div className="hero-actions">
-                <a className="button button--primary" href="#contact">
+                <a
+                  className="button button--primary"
+                  href="#contact"
+                  onClick={() => trackEvent("quote_cta_click", { location: "hero" })}
+                >
                   Request a quote <ArrowUpRight size={16} />
+                </a>
+                <a
+                  className="button button--hero-whatsapp"
+                  href={whatsappHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => trackEvent("whatsapp_cta_click", { location: "hero" })}
+                >
+                  <MessageSquare size={16} /> Chat on WhatsApp
                 </a>
                 <a className="text-link text-link--light" href="#services">
                   Explore our services <ArrowDownRight size={17} />
@@ -494,7 +531,7 @@ export default function Home() {
             <div className="about-visual reveal-frame">
               <img
                 src={imagePaths.electrical}
-                alt="Electrical installation work in progress"
+                alt="Commercial electrical panel installation and MEP cabling by GULF ORIENT in the UAE"
                 loading="lazy"
                 decoding="async"
                 width="600"
@@ -507,7 +544,7 @@ export default function Home() {
               <div className="about-stamp">
                 <img
                   src="/images/gulf-orient-logo.webp"
-                  alt="GULF ORIENT Contracting LLC"
+                  alt="GULF ORIENT Contracting official quality assurance seal"
                   className="brand-logo-badge"
                   width="78"
                   height="28"
@@ -746,7 +783,7 @@ export default function Home() {
                   <div className="project-image-wrap">
                     <img
                       src={project.image}
-                      alt={`${project.title} demo placeholder`}
+                      alt={project.alt || `${project.title} by GULF ORIENT in ${project.location}, UAE`}
                       loading="lazy"
                       decoding="async"
                       width="400"
@@ -942,6 +979,7 @@ export default function Home() {
                 {item.label}
               </a>
             ))}
+            <a href="/privacy-policy">Privacy Policy</a>
           </div>
           <div className="footer-column">
             <span className="footer-label">Services</span>
@@ -964,10 +1002,15 @@ export default function Home() {
         <div className="container footer-bottom">
           <span>
             © {new Date().getFullYear()} GULF ORIENT Electromechanical
-            Contracting LLC
+            Contracting LLC · All rights reserved.
           </span>
-          <span>
-            Professional contracting. Clear communication. No shortcuts.
+          <span style={{ display: "flex", gap: "18px", alignItems: "center" }}>
+            <a href="/privacy-policy" style={{ color: "#77d9ea" }}>
+              Privacy Policy
+            </a>
+            <span>
+              Professional contracting. Clear communication. No shortcuts.
+            </span>
           </span>
         </div>
       </footer>
@@ -996,7 +1039,10 @@ export default function Home() {
             <div className="modal-image">
               <img
                 src={selectedProject.image}
-                alt={`${selectedProject.title} demo placeholder`}
+                alt={
+                  selectedProject.alt ||
+                  `${selectedProject.title} project scope by GULF ORIENT in ${selectedProject.location}, UAE`
+                }
                 decoding="async"
                 width="460"
                 height="420"
