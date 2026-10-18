@@ -12,18 +12,15 @@ import {
   Compass,
   Construction,
   Factory,
-  Hammer,
   HardHat,
   Home as HomeIcon,
   Layers,
   LayoutGrid,
-  Lightbulb,
   Mail,
   MapPin,
   MapPinned,
   Menu,
   MessageSquare,
-  Paintbrush,
   PanelsTopLeft,
   Phone,
   Ruler,
@@ -36,7 +33,7 @@ import {
   Wrench,
   X,
   Zap,
-  AirVent
+  AirVent,
 } from "lucide-react";
 
 const asset = (path: string) => `/images/${path}`;
@@ -55,15 +52,21 @@ const siteConfig = {
 };
 
 const imagePaths = {
-  hero: asset("construction-site.jpg"),
-  electrical: asset("electrical-installation.jpg"),
-  ceiling: asset("ceiling-installation.jpg"),
-  office: asset("office-interior.jpg"),
-  detail: asset("electrical-detail.jpg"),
-  finishing: asset("residential-finishing.jpg")
+  hero: asset("construction-site.webp"),
+  electrical: asset("electrical-installation.webp"),
+  ceiling: asset("ceiling-installation.webp"),
+  office: asset("office-interior.webp"),
+  detail: asset("electrical-detail.webp"),
+  finishing: asset("residential-finishing.webp"),
 };
 
-type ProjectCategory = "All" | "Electrical" | "Electromechanical" | "Interior" | "Fit-Out" | "Maintenance";
+type ProjectCategory =
+  | "All"
+  | "Electrical"
+  | "Electromechanical"
+  | "Interior"
+  | "Fit-Out"
+  | "Maintenance";
 
 type Project = {
   title: string;
@@ -74,24 +77,102 @@ type Project = {
   accent: string;
 };
 
-const services: { icon: LucideIcon; number: string; title: string; description: string }[] = [
-  { icon: Zap, number: "01", title: "Electrical Works", description: "Installation, wiring, lighting and power distribution for dependable building systems." },
-  { icon: Settings, number: "02", title: "Electromechanical Works", description: "Coordinated electromechanical installation that keeps building services working together." },
-  { icon: AirVent, number: "03", title: "AC Installation & Services", description: "Complete air conditioning solutions for residential and commercial properties, covering split ACs, package units, central AC systems and chillers." },
-  { icon: PanelsTopLeft, number: "04", title: "Gypsum Works", description: "Walls, ceilings, bulkheads and architectural details shaped for the space." },
-  { icon: Layers, number: "05", title: "False Ceiling Works", description: "Clean, precise ceiling systems for commercial and residential environments." },
-  { icon: LayoutGrid, number: "06", title: "Flooring & Tiling", description: "Aligned, durable floor and tile finishes with close attention to the final detail." },
+const services: {
+  icon: LucideIcon;
+  number: string;
+  title: string;
+  description: string;
+}[] = [
+  {
+    icon: Zap,
+    number: "01",
+    title: "Electrical Works",
+    description:
+      "Installation, wiring, lighting and power distribution for dependable building systems.",
+  },
+  {
+    icon: Settings,
+    number: "02",
+    title: "Electromechanical Works",
+    description:
+      "Coordinated electromechanical installation that keeps building services working together.",
+  },
+  {
+    icon: AirVent,
+    number: "03",
+    title: "AC Installation & Services",
+    description:
+      "Complete air conditioning solutions for residential and commercial properties, covering split ACs, package units, central AC systems and chillers.",
+  },
+  {
+    icon: PanelsTopLeft,
+    number: "04",
+    title: "Gypsum Works",
+    description:
+      "Walls, ceilings, bulkheads and architectural details shaped for the space.",
+  },
+  {
+    icon: Layers,
+    number: "05",
+    title: "False Ceiling Works",
+    description:
+      "Clean, precise ceiling systems for commercial and residential environments.",
+  },
+  {
+    icon: LayoutGrid,
+    number: "06",
+    title: "Flooring & Tiling",
+    description:
+      "Aligned, durable floor and tile finishes with close attention to the final detail.",
+  },
   // { icon: Paintbrush, number: "07", title: "Painting & Finishing", description: "Surface preparation, painting and finishing work that completes the environment." },
-  { icon: SlidersHorizontal, number: "07", title: "Partition Works", description: "Practical partition solutions for offices, retail, commercial and residential spaces." },
-  { icon: Wrench, number: "08", title: "Maintenance & General Contracting", description: "Responsive repair, improvement, maintenance and general contracting support." },
+  {
+    icon: SlidersHorizontal,
+    number: "07",
+    title: "Partition Works",
+    description:
+      "Practical partition solutions for offices, retail, commercial and residential spaces.",
+  },
+  {
+    icon: Wrench,
+    number: "08",
+    title: "Maintenance & General Contracting",
+    description:
+      "Responsive repair, improvement, maintenance and general contracting support.",
+  },
 ];
 
 const reasons = [
-  { icon: ShieldCheck, title: "Quality workmanship", description: "Attention to workmanship, materials and finishing details at every stage." },
-  { icon: Compass, title: "Practical solutions", description: "Scope-led decisions shaped around site conditions and intended use." },
-  { icon: Settings, title: "Coordinated execution", description: "Multiple work scopes kept aligned so the project can keep moving." },
-  { icon: MessageSquare, title: "Clear communication", description: "Professional communication from first brief through final handover." },
-  { icon: Wrench, title: "Reliable support", description: "A practical partner for maintenance, improvements and future requirements." },
+  {
+    icon: ShieldCheck,
+    title: "Quality workmanship",
+    description:
+      "Attention to workmanship, materials and finishing details at every stage.",
+  },
+  {
+    icon: Compass,
+    title: "Practical solutions",
+    description:
+      "Scope-led decisions shaped around site conditions and intended use.",
+  },
+  {
+    icon: Settings,
+    title: "Coordinated execution",
+    description:
+      "Multiple work scopes kept aligned so the project can keep moving.",
+  },
+  {
+    icon: MessageSquare,
+    title: "Clear communication",
+    description:
+      "Professional communication from first brief through final handover.",
+  },
+  {
+    icon: Wrench,
+    title: "Reliable support",
+    description:
+      "A practical partner for maintenance, improvements and future requirements.",
+  },
 ];
 
 const industries: { icon: LucideIcon; title: string }[] = [
@@ -108,22 +189,100 @@ const industries: { icon: LucideIcon; title: string }[] = [
 ];
 
 const projects: Project[] = [
-  { title: "Business Centre Fit-Out", location: "Dubai", category: "Fit-Out", description: "Demo / placeholder project content — replace with verified project information and photographs.", image: imagePaths.office, accent: "02 / Fit-out" },
-  { title: "Electrical Installation Study", location: "UAE", category: "Electrical", description: "Demo / placeholder project content — replace with verified project information and photographs.", image: imagePaths.electrical, accent: "01 / Electrical" },
-  { title: "Commercial Ceiling Works", location: "Abu Dhabi", category: "Interior", description: "Demo / placeholder project content — replace with verified project information and photographs.", image: imagePaths.ceiling, accent: "03 / Interior" },
-  { title: "Site Coordination & Services", location: "Sharjah", category: "Electromechanical", description: "Demo / placeholder project content — replace with verified project information and photographs.", image: imagePaths.hero, accent: "04 / MEP" },
-  { title: "Maintenance Support Scope", location: "UAE", category: "Maintenance", description: "Demo / placeholder project content — replace with verified project information and photographs.", image: imagePaths.detail, accent: "05 / Maintenance" },
-  { title: "Residential Finishing Package", location: "Dubai", category: "Interior", description: "Demo / placeholder project content — replace with verified project information and photographs.", image: imagePaths.finishing, accent: "06 / Finishing" },
+  {
+    title: "Business Centre Fit-Out",
+    location: "Dubai",
+    category: "Fit-Out",
+    description:
+      "Demo / placeholder project content — replace with verified project information and photographs.",
+    image: imagePaths.office,
+    accent: "02 / Fit-out",
+  },
+  {
+    title: "Electrical Installation Study",
+    location: "UAE",
+    category: "Electrical",
+    description:
+      "Demo / placeholder project content — replace with verified project information and photographs.",
+    image: imagePaths.electrical,
+    accent: "01 / Electrical",
+  },
+  {
+    title: "Commercial Ceiling Works",
+    location: "Abu Dhabi",
+    category: "Interior",
+    description:
+      "Demo / placeholder project content — replace with verified project information and photographs.",
+    image: imagePaths.ceiling,
+    accent: "03 / Interior",
+  },
+  {
+    title: "Site Coordination & Services",
+    location: "Sharjah",
+    category: "Electromechanical",
+    description:
+      "Demo / placeholder project content — replace with verified project information and photographs.",
+    image: imagePaths.hero,
+    accent: "04 / MEP",
+  },
+  {
+    title: "Maintenance Support Scope",
+    location: "UAE",
+    category: "Maintenance",
+    description:
+      "Demo / placeholder project content — replace with verified project information and photographs.",
+    image: imagePaths.detail,
+    accent: "05 / Maintenance",
+  },
+  {
+    title: "Residential Finishing Package",
+    location: "Dubai",
+    category: "Interior",
+    description:
+      "Demo / placeholder project content — replace with verified project information and photographs.",
+    image: imagePaths.finishing,
+    accent: "06 / Finishing",
+  },
 ];
 
 const processSteps = [
-  { number: "01", icon: MessageSquare, title: "Consultation", description: "Understand the client requirements and project objectives." },
-  { number: "02", icon: Ruler, title: "Site assessment", description: "Review site conditions, scope and technical requirements." },
-  { number: "03", icon: ClipboardCheck, title: "Quotation & planning", description: "Define scope, materials, schedule and execution requirements." },
-  { number: "04", icon: CheckCircle2, title: "Execution & handover", description: "Complete the work with coordinated execution, finishing and handover." },
+  {
+    number: "01",
+    icon: MessageSquare,
+    title: "Consultation",
+    description: "Understand the client requirements and project objectives.",
+  },
+  {
+    number: "02",
+    icon: Ruler,
+    title: "Site assessment",
+    description: "Review site conditions, scope and technical requirements.",
+  },
+  {
+    number: "03",
+    icon: ClipboardCheck,
+    title: "Quotation & planning",
+    description:
+      "Define scope, materials, schedule and execution requirements.",
+  },
+  {
+    number: "04",
+    icon: CheckCircle2,
+    title: "Execution & handover",
+    description:
+      "Complete the work with coordinated execution, finishing and handover.",
+  },
 ];
 
-const emirates = ["Dubai", "Abu Dhabi", "Sharjah", "Ajman", "Umm Al Quwain", "Ras Al Khaimah", "Fujairah"];
+const emirates = [
+  "Dubai",
+  "Abu Dhabi",
+  "Sharjah",
+  "Ajman",
+  "Umm Al Quwain",
+  "Ras Al Khaimah",
+  "Fujairah",
+];
 const navItems = [
   { label: "About", href: "#about" },
   { label: "Services", href: "#services" },
@@ -134,14 +293,38 @@ const navItems = [
 
 function BrandMark({ inverted = false }: { inverted?: boolean }) {
   return (
-    <a href="#top" className={`brand-lockup ${inverted ? "brand-lockup--inverted" : ""}`} aria-label="GULF ORIENT home">
-      <img src="/images/gulf-orient-logo.png" alt="GULF ORIENT Contracting LLC" className="brand-logo"/>
-      <span className="brand-name"><span>GULF ORIENT</span><small>ELECTROMECHANICAL CONTRACTING LLC</small></span>
+    <a
+      href="#top"
+      className={`brand-lockup ${inverted ? "brand-lockup--inverted" : ""}`}
+      aria-label="GULF ORIENT home"
+    >
+      <img
+        src="/images/gulf-orient-logo.webp"
+        alt="GULF ORIENT Contracting LLC"
+        className="brand-logo"
+        width="180"
+        height="60"
+        decoding="async"
+      />
+      <span className="brand-name">
+        <span>GULF ORIENT</span>
+        <small>ELECTROMECHANICAL CONTRACTING LLC</small>
+      </span>
     </a>
   );
 }
 
-function SectionIntro({ eyebrow, title, description, light = false }: { eyebrow: string; title: string; description?: string; light?: boolean }) {
+function SectionIntro({
+  eyebrow,
+  title,
+  description,
+  light = false,
+}: {
+  eyebrow: string;
+  title: string;
+  description?: string;
+  light?: boolean;
+}) {
   return (
     <div className={`section-intro ${light ? "section-intro--light" : ""}`}>
       <span className="eyebrow">{eyebrow}</span>
@@ -166,12 +349,17 @@ export default function Home() {
 
   useEffect(() => {
     document.body.style.overflow = selectedProject ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [selectedProject]);
 
   const filteredProjects = useMemo(
-    () => activeCategory === "All" ? projects : projects.filter((project) => project.category === activeCategory),
-    [activeCategory],
+    () =>
+      activeCategory === "All"
+        ? projects
+        : projects.filter(project => project.category === activeCategory),
+    [activeCategory]
   );
 
   const goTo = (href: string) => {
@@ -307,17 +495,23 @@ export default function Home() {
               <img
                 src={imagePaths.electrical}
                 alt="Electrical installation work in progress"
+                loading="lazy"
+                decoding="async"
+                width="600"
+                height="580"
               />
               <div className="image-caption">
                 <span>GULF ORIENT</span>
                 <span>01 / FIELD DETAIL</span>
               </div>
               <div className="about-stamp">
-                {" "}
                 <img
-                  src="/images/gulf-orient-logo.png"
+                  src="/images/gulf-orient-logo.webp"
                   alt="GULF ORIENT Contracting LLC"
                   className="brand-logo-badge"
+                  width="78"
+                  height="28"
+                  decoding="async"
                 />
                 <small>DETAILS MATTER</small>
               </div>
@@ -502,11 +696,11 @@ export default function Home() {
         >
           <div className="container">
             <div className="section-heading-row">
-            <SectionIntro
-            eyebrow="Our Projects"
-            title="Practical solutions. Quality in every detail."
-            description="Explore our work across electrical, electromechanical, air conditioning and interior contracting. Every project reflects our commitment to quality workmanship, practical solutions and attention to detail."
-            />
+              <SectionIntro
+                eyebrow="Our Projects"
+                title="Practical solutions. Quality in every detail."
+                description="Explore our work across electrical, electromechanical, air conditioning and interior contracting. Every project reflects our commitment to quality workmanship, practical solutions and attention to detail."
+              />
               <span className="section-index">
                 04 <span>/ portfolio</span>
               </span>
@@ -553,6 +747,10 @@ export default function Home() {
                     <img
                       src={project.image}
                       alt={`${project.title} demo placeholder`}
+                      loading="lazy"
+                      decoding="async"
+                      width="400"
+                      height="245"
                     />
                     <span className="project-category">{project.accent}</span>
                     <span className="project-open">
@@ -799,6 +997,9 @@ export default function Home() {
               <img
                 src={selectedProject.image}
                 alt={`${selectedProject.title} demo placeholder`}
+                decoding="async"
+                width="460"
+                height="420"
               />
             </div>
             <div className="modal-content">
