@@ -1,5 +1,15 @@
+import { Route, Switch } from "wouter";
 import Home from "./pages/Home";
+import NotFound from "./pages/NotFound";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 
 export default function App() {
-  return <Home />;
+  return (
+    <Switch>
+      <Route path="/" component={Home} />
+      <Route path="/privacy-policy" component={PrivacyPolicy} />
+      {/* Fallback 404 Route */}
+      <Route component={NotFound} />
+    </Switch>
+  );
 }
