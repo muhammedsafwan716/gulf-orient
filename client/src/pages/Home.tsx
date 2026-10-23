@@ -47,7 +47,7 @@ const siteConfig = {
   whatsappNumber: "+971558308857",
   contact: {
     address: "Abu Dhabi, UAE.",
-    phone: "+971558308857,+971553117251",
+    phone: "+971558308857, +971553117251",
     email: "info@gulforientec.ae",
     hours: "9 AM to 6 PM",
   },
