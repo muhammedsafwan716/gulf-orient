@@ -1055,9 +1055,9 @@ export default function Home() {
               </span>
               <h2 id="project-modal-title">{selectedProject.title}</h2>
               <p>{selectedProject.description}</p>
-              <div className="modal-note">
+              {/* <div className="modal-note">
                 <Construction size={16} /> Demo Text.
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
