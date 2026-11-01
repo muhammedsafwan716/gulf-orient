@@ -1,4 +1,5 @@
 import { Route, Switch } from "wouter";
+import { Analytics } from "@vercel/analytics/react";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
@@ -6,11 +7,14 @@ import MaintenancePage from "./pages/TakenDown";
 
 export default function App() {
   return (
-    <Switch>
-      <Route path="/" component={Home} />
-      <Route path="/privacy-policy" component={PrivacyPolicy} />
-      {/* Fallback 404 Route */}
-      <Route component={NotFound} />
-    </Switch>
+    <>
+      <Switch>
+        <Route path="/" component={Home} />
+        <Route path="/privacy-policy" component={PrivacyPolicy} />
+        {/* Fallback 404 Route */}
+        <Route component={NotFound} />
+      </Switch>
+      <Analytics />
+    </>
   );
 }

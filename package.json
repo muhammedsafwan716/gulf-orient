@@ -12,6 +12,7 @@
     "format": "prettier --write ."
   },
   "dependencies": {
+    "@vercel/analytics": "^2.0.1",
     "express": "^4.21.2",
     "lucide-react": "^0.453.0",
     "react": "^19.2.1",
