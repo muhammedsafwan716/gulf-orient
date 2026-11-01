@@ -10,9 +10,9 @@ export default function MaintenancePage() {
             textAlign: "center",
           }}
         >
-          <h1>This website is taken down.</h1>
+          <h1>This website is under maintenance.</h1>
           <p style={{ color: "#777", marginTop: "8px" }}>
-            There is nothing to see here.
+            Please visit us again.
           </p>
         </div>
       );
